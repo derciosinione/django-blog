@@ -1,15 +1,7 @@
-# Django-BlogApp       
+# Light-BlogApp       
 
-<h4>Part 1:</h4>
-<ol>
-    <li></li>
-</ol>
+Este é um projecto desenvolvido em Django com objectivo de aprimorar os meus conhecimentos, neste site podes criar a tua conta e publicar, editar e eliminar os postes criados por ti, sinta-se livre e faça o que quiseres com este projecto. 
 
-<h4>Part 2</h4>
-<ol>
-     <li></li>
-     <li></li>
-</ol>
     
 <h2>Tecnologias usadas:</h2>
 <ul>
@@ -22,6 +14,7 @@
 <h2>Python modulos necessários:</h2>
 <ul>
     <li>Django==2.2.4</li>
+    <li>crispy_forms</li>
 </ul>
   
 
