@@ -1,6 +1,8 @@
 # Light-BlogApp       
 
-Este é um projecto desenvolvido em Django com objectivo de aprimorar os meus conhecimentos, neste site podes criar a tua conta e publicar, editar e eliminar os postes criados por ti, sinta-se livre e faça o que quiseres com este projecto. 
+Este é um projecto desenvolvido em Django com objectivo de aprimorar os meus conhecimentos, neste site podes criar a tua conta e publicar, editar e eliminar os postes criados por ti.
+Clicando no nome do autor da publicação o usuário será redirecionado a uma página com todas a publicações do autor selecionado e clicando no titulo da publicação o usuário será redirecionado as uma pagina com a publicação selecionada. 
+sinta-se livre e faça o que quiseres com este projecto. 
 
     
 <h2>Tecnologias usadas:</h2>
