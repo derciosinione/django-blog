@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div style="display: flex; justify-content: center;">
+        <div class="border-caixa">
+            <!-- formulario de Postagem -->
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom">Eliminar Post</legend>
+                    <h5>Tens a certeza que queres eliminar o post "{{ object.title }}"? </h5>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-danger" type="submit">Sim, Elimine</button>
+                    <a href="{% url 'blog:post-detail' object.id %}" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

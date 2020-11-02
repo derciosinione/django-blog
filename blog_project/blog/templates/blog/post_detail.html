@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="clearfix div-container">
+    
+<aside class="aside-left mr-2">
+<div class="row">
+    {% if post %}
+        <div class="col-md-10 mb-2">
+        <div class="card">
+            <div class="card-header">
+                <img class="rounded-circle img-perfil" style="width: 50px; height: 50px;" src="{{ post.author.perfil.imagem.url }}" alt="">
+                <a href="{% url 'blog:user-posts' post.author.username %}" class="mr-2 no-decoration">{{ post.author }}</a>
+                <small class="text-muted"><cite title="Source Title">{{ post.date_posted|date:"F d, Y H:i" }}</cite></small>
+            </div>            
+            <div class="card-body mb-0 pt-2">
+                <h5 class="">{{post.title}}</h5>
+                <p class="mb-0">{{ post.content }}</p>
+                
+                <!-- verificar se o post foi criado pelo usuario logado -->
+                {% if post.author == user %}
+                <div class="mt-2 border-top pt-2" style="margin-bottom: -6px;">
+                    <a href="{% url 'blog:post-update' post.id %}" class="btn btn-outline-info">Editar</a>
+                    <a href="{% url 'blog:post-delete' post.id %}" class="btn btn-outline-danger">Eliminar</a>
+                </div>
+                {% endif %}
+            </div>
+          </div>
+        </div>    
+    {% endif %}
+</div>
+</aside>
+
+<aside>
+    <div class="card text-white text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Light Music</div>
+        <div class="card-body">
+        <h5 class="card-title">Info card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</aside>
+</div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <br><br>
+    <h2>Sessão terminada com sucesso</h2>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="no-decoration" href="{% url 'users:login' %}">Entrar novamente</a>
+                <br>
+                <a class="no-decoration" href="{% url 'blog:home' %}">Ir a página inicial</a>
+                <br>
+                <a class="no-decoration" href="{% url 'users:register' %}">Registar-se</a>
+            </small>
+        </div>
+    <br> <br>
+{% endblock content %}

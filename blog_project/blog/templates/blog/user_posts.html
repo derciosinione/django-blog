@@ -1,0 +1,63 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="clearfix div-container">
+    
+<aside class="aside-left mr-2">
+<div class="row">
+    {% if posts %}
+        <h4 class="ml-3">Posts de {{ view.kwargs.username }}  ({{ page_obj.paginator.count }}) </h4>
+        {% for post in posts %}   
+        <div class="col-md-10 mb-2">
+        <div class="card">
+            <div class="card-header">
+                <img class="rounded-circle img-perfil" style="width: 50px; height: 50px;" src="{{ post.author.perfil.imagem.url }}" alt="">
+                <a href="{% url 'blog:user-posts' post.author.username %}" class="mr-2 no-decoration">{{ post.author }}</a>
+                <small class="text-muted"><cite title="Source Title">{{ post.date_posted|date:"F d, Y H:i" }}</cite></small>
+            </div>            
+            <div class="card-body mb-0 pt-2">
+                <a class="no-decoration text-dark" href="{% url 'blog:post-detail' post.id %}"><h5 class="">{{post.title}}</h5></a>
+                <p class="mb-0">{{ post.content }}</p>
+            </div>
+          </div>
+        </div>    
+        {% endfor %}
+    {% endif %}
+
+    <!-- Paginação -->
+    <div class="col-md-10">
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info" href="?page=1">First</a>
+            <a class="btn btn-outline-info" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}        
+ 
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num <  page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}        
+        
+    {% endif %}
+    </div>
+
+</div>
+</aside>
+
+<aside>
+    <div class="card text-white text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Light Music</div>
+        <div class="card-body">
+        <h5 class="card-title">Info card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</aside>
+</div>
+{% endblock content %}

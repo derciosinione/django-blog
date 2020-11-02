@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div style="display: flex; justify-content: center;">
+        <div class="border-caixa">
+            <!-- formulario de Postagem -->
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom">Blog Post</legend>
+                    {{ form|crispy}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Postar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

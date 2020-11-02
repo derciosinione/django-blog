@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div style="display: flex; justify-content: center;">
+        <div class="border-caixa">
+            <!-- formulario de registo -->
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom">Regista-se Hoje</legend>
+                    {{ form|crispy}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Registar</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Já possui uma conta? <a class="ml-1 no-decoration" href="{% url 'users:login' %}">Entrar</a>
+                </small>
+            </div>
+        </div>
+    </div>
+    <br> <br>
+{% endblock content %}

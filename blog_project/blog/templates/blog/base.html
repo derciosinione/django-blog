@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/mystyle.css' %}">
+    
+    {% if title %}
+        <title>Blog - {{title}}</title>
+    {% else %}
+        <title>Blog</title>
+    {% endif %}
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'blog:home' %}">Light Music</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active"><a class="nav-link" href="{% url 'blog:home' %}">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Músicas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#">Artistas</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#">Serviços</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'blog:about' %}">Sobre</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#">Contacto</a></li>
+              </ul>
+    
+              <div class="navbar-nav mr-2">
+                <!-- <a class="nav-link" href="{% url 'users:register' %}">Registar</a> -->
+                {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                  <a class="nav-link" href="/admin">Admin</a>
+                {% endif %}
+                
+                  <a class="nav-link" href="{% url 'blog:post-create' %}">Add Post</a>
+                  <a class="nav-link" href="{% url 'users:perfil' %}">Perfil</a>
+                  <a class="nav-link" href="{% url 'users:logout' %}">Sair</a>
+                {% else %}
+                  <a class="nav-link" href="{% url 'users:login' %}">Entrar</a>
+                {% endif %}
+              </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">      
+      <br> <br> <br>
+      {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <script src="{% static 'blog/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

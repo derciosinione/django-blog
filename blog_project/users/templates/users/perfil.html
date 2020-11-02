@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 border-caixa" style="border-radius: 5px;">
+            <div class="media mb-2">
+                <img class="rounded-circle img-perfil" src="{{ user.perfil.imagem.url }}" alt="">
+                <div class="media-body">
+                    <h4 class="border-bottom pb-1">{{ user.username }}</h4>
+                    <p class="text-secondary mt-0">{{ user.email }}</p>
+                </div>
+            </div>
+            <!-- form -->
+            <!-- formulario de actualizar perfil -->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom">Perfil</legend>
+                    {{ form_user|crispy}}
+                    {{ form_perfil|crispy}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+{% endblock content %}
